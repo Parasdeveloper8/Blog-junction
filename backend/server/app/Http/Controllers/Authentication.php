@@ -8,6 +8,14 @@ class Authentication extends Controller
 {
    function registerController(Request $req){
         try{
+          //check if email exists
+        $exists = User::where('email', $req->email)->exists();
+        if($exists){
+        return response()->json([
+            "success" => false,
+            "info" => "Email already exists"
+         ], 409);
+       }
          //apply validations
         $req->validate([
             'name' => 'required|max:255',
