@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Model
 {
@@ -15,5 +16,13 @@ class User extends Model
             'email'=>$email,
             'password'=>bcrypt($pass)
        ]);
+    }
+
+    public static function login($dbPassHash,$pass){
+        //compare user password and db password hash
+         if(Hash::check($pass,$dbPassHash)) {
+            return true;
+         }
+         return false;
     }
 }
