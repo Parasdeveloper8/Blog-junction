@@ -45,16 +45,20 @@ class Authentication extends Controller
         //check if user exists and store password and email
        $user = User::where('email',$req->email)->first();
        if($user){
-
+         $name = $user->name;
          $pass = $user->password;
          $email = $user->email;
          //add values in User model's login function
          $status = User::login($pass,$req->password);
          if($status){
+            //generate token
+            $token = $user->createToken('myapptoken')->plainTextToken;
             return response()->json([
                "success" => true,
-               "info"    => "Login successful"
+               "info"    => "Login successful",
+               "token"   => $token
             ],200);
+           
          }
          return response()->json([
             "success" => false,
@@ -74,5 +78,20 @@ class Authentication extends Controller
             "info" => $e->getMessage()
          ], 500);
       }
+   }
+   //destroy entire session
+   function logoutController(Request $req){
+      try{
+         $req->user()->currentAccessToken()->delete();
+         return response()->json([
+         "success" => true,
+         "info"    => "session destroyed"
+         ],200);
+   }catch(\Exception $e){
+      return response()->json([
+         "success" => false,
+         "info" => $e->getMessage()
+      ], 500);
+   }
    }
 }

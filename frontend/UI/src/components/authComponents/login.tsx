@@ -11,6 +11,7 @@ const Login = () =>{
      interface ApiResponse {
         success:boolean;
         info:string;
+        token:string;
       }
 
       const navigate = useNavigate();
@@ -38,6 +39,7 @@ const Login = () =>{
         });
   
         if(response.data.success){
+           localStorage.setItem('token', response.data.token); //set token
             const status = true;
            navigate('/',{state:{status}}); // Redirect to the homepage
         }
