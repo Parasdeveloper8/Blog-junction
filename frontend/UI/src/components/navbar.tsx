@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link , useLocation } from "react-router-dom";
 const NavBar = () => {
-  const status = false;
+  const location = useLocation();
+  const lstatus = location.state?.status;
+  const status =  lstatus;
     //css properties
     //const styling:React.CSSProperties = { }
 
