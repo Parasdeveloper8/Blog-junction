@@ -12,6 +12,7 @@ const Login = () =>{
         success:boolean;
         info:string;
         token:string;
+        email:string;
       }
 
       const navigate = useNavigate();
@@ -40,6 +41,7 @@ const Login = () =>{
   
         if(response.data.success){
            localStorage.setItem('token', response.data.token); //set token
+           localStorage.setItem('email', response.data.email); //set email
             const status = true;
            navigate('/',{state:{status}}); // Redirect to the homepage
         }

@@ -5,7 +5,7 @@ const NavBar = () => {
   const location = useLocation();
   const lstatus = location.state?.status;
   const status =  lstatus;
-  const token = localStorage.getItem('token');
+  const token:string | null= localStorage.getItem('token');
  // console.log(localStorage.getItem('token'));
 
     //css properties
@@ -29,6 +29,7 @@ const NavBar = () => {
       });
       if(response.data.success){
         localStorage.removeItem('token');
+        localStorage.removeItem('email');
         navigate('/login'); 
     }
     }catch(error){
