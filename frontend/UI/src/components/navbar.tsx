@@ -1,15 +1,9 @@
-import { Link , useLocation ,useNavigate} from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import axios, { AxiosResponse } from 'axios';
 
 const NavBar = () => {
-  const location = useLocation();
-  const lstatus = location.state?.status;
-  const status =  lstatus;
   const token:string | null= localStorage.getItem('token');
  // console.log(localStorage.getItem('token'));
-
-    //css properties
-    //const styling:React.CSSProperties = { }
     interface ApiResponse {
       success:boolean;
       info:string;
@@ -37,6 +31,7 @@ const NavBar = () => {
     }
       axios.post("http://localhost:8000/api/logout")
   }
+  
     return (
         <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -56,7 +51,7 @@ const NavBar = () => {
         <li className="nav-item">
           <a className="nav-link" href="#">My Post</a>
         </li>
-        {status ? (
+        {token? (
           <form className="d-flex" style={{marginRight:"5px",marginBottom:"5px"}} onSubmit={handleLogout}>
           <button className="btn btn-outline-success" type="submit">Logout</button>
           </form>) :  (

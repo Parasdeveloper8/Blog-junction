@@ -42,8 +42,7 @@ const Login = () =>{
         if(response.data.success){
            localStorage.setItem('token', response.data.token); //set token
            localStorage.setItem('email', response.data.email); //set email
-            const status = true;
-           navigate('/',{state:{status}}); // Redirect to the homepage
+           navigate('/'); // Redirect to the homepage
         }
      }catch(error){
         console.error(error);
