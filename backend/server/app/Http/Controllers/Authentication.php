@@ -58,7 +58,8 @@ class Authentication extends Controller
             return response()->json([
                "success" => true,
                "info"    => "Login successful",
-               "token"   => $token
+               "token"   => $token,
+               "email"   => $email
             ],200);
            
          }
