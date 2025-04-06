@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+
+//Controller for Authentication operations
 class Authentication extends Controller
 {
-   //Controller for Registration
+   //Function for Registration
    function registerController(Request $req){
         try{
           //check if email exists
@@ -39,7 +41,7 @@ class Authentication extends Controller
         }
    }
 
-   //Controller for Login
+   //Function for Login
    function loginController(Request $req){
       try{
         //check if user exists and store password and email
