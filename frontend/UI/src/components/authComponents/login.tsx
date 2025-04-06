@@ -47,7 +47,7 @@ const Login = () =>{
         }
      }catch(error){
         console.error(error);
-        setErr("An error occured during registration . Make sure Password is correct");
+        setErr("An error occured during Login . Make sure Password is correct");
         setSubmitting(false);
      }
   }

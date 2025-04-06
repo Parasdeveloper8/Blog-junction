@@ -38,7 +38,7 @@ const Register = () =>{
       });
 
       if(response.data.success){
-         navigate('/login'); // Redirect to the homepage
+         navigate('/login'); // Redirect to the login page
       }
    }catch(error){
       console.error(error);
