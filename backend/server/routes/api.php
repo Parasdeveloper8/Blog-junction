@@ -11,4 +11,5 @@ Route::post('/login',[Authentication::class,'loginController']);
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::post('/logout',[Authentication::class,'logoutController']);
     Route::post('/save-blog',[Operation::class,'addPost']);
+    Route::get('/myposts/{email}',[Operation::class,'getPost']);
 });

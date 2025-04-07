@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 //controller to handle user operations ex- add post , create post ,etc
 class Operation extends Controller
@@ -34,6 +35,33 @@ class Operation extends Controller
          ], 201);
 
 
+        }catch(\Exception $e){
+            return response()->json([
+                "success" => false,
+                "info" => $e->getMessage()
+             ], 500);
+        }
+    }
+
+    //function to get posts
+    function getPost($email){
+        try{
+             //check if email exists
+             $exists = User::where('email', $email)->exists();
+             if($exists == false){
+                 return response()->json([
+                     "success" => false,
+                     "info" => "User doesn't exist"
+                 ], 404);  
+             }
+
+            //call Blog model's getPost function to get data
+            $data = Blog::getPost($email);
+           // Log::info($data);
+            return response()->json([
+                "success" =>true,
+                "info" =>$data
+            ],200); 
         }catch(\Exception $e){
             return response()->json([
                 "success" => false,

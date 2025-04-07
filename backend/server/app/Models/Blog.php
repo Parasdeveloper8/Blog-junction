@@ -17,4 +17,8 @@ class Blog extends Model
             'text'=>$text
        ]);
     }
+
+    public static function getPost($email){
+        return Blog::where('email', $email)->get();
+    }
 }
