@@ -4,6 +4,7 @@ import Home from "./components/home.tsx";
 import CreatePage from "./components/create.tsx";
 import Login   from "./components/authComponents/login.tsx";
 import Register from "./components/authComponents/register.tsx";
+import Mypost from "./components/mypost.tsx";
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="*" element={<NotFound />} /> {/* Render not found page if route not found */}
         <Route path="/login" element={<Login/>} /> {/*Render Login Page */}
         <Route path="/register" element={<Register/>} /> {/*Render Register Page */}
+        <Route path="/mypost"   element={<Mypost/>} /> {/*Render My post page */}
       </Routes>
     </Router>
     </>

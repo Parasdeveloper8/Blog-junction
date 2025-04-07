@@ -49,7 +49,7 @@ const NavBar = () => {
           <Link className="nav-link active" aria-current="page" to="/createPage">Create Post</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">My Post</a>
+          <Link className="nav-link" to="/mypost">My Post</Link>
         </li>
         {token? (
           <form className="d-flex" style={{marginRight:"5px",marginBottom:"5px"}} onSubmit={handleLogout}>
