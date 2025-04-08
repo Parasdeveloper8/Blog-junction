@@ -18,7 +18,11 @@ class Blog extends Model
        ]);
     }
 
-    public static function getPost($email){
+    public static function getOwnPost($email){
         return Blog::where('email', $email)->get();
+    }
+
+    public static function getPublicPost(){
+        return Blog::all();
     }
 }

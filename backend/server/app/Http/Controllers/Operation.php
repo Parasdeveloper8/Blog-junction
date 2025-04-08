@@ -43,8 +43,8 @@ class Operation extends Controller
         }
     }
 
-    //function to get posts
-    function getPost($email){
+    //function to get own posts
+    function getOwnPost($email){
         try{
              //check if email exists
              $exists = User::where('email', $email)->exists();
@@ -55,12 +55,29 @@ class Operation extends Controller
                  ], 404);  
              }
 
-            //call Blog model's getPost function to get data
-            $data = Blog::getPost($email);
+            //call Blog model's getOwnPost function to get data
+            $data = Blog::getOwnPost($email);
            // Log::info($data);
             return response()->json([
                 "success" =>true,
                 "info" =>$data
+            ],200); 
+        }catch(\Exception $e){
+            return response()->json([
+                "success" => false,
+                "info" => $e->getMessage()
+             ], 500);
+        }
+    }
+
+    //function to get posts
+    function getPosts(){
+        try{
+            //call Blog model's getPublicPost function to get data
+           $data = Blog::getPublicPost();
+           return response()->json([
+            "success" =>true,
+            "info" =>$data
             ],200); 
         }catch(\Exception $e){
             return response()->json([
