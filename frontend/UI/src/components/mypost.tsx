@@ -1,15 +1,39 @@
 import axios, { AxiosResponse} from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 const Mypost = () =>{
+   
    interface ApiResponse {
       id: number;
       text: string;
       created_at: string;
       updated_at: string;
    }
+
+   interface DelResponse{
+      success:boolean;
+      info:string;
+   }
      const [data,setData] = useState<null | ApiResponse []>(null);
 
+     const handleDeletion = async (id:number,e: React.FormEvent) =>{
+      try{
+         e.preventDefault();
+         const response:AxiosResponse<DelResponse> = await axios.delete(`http://localhost:8000/api/delete/${id}`,
+            {
+               headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }
+         );
+         if(response.data.success){
+            location.reload();
+         }
+      }catch(error){
+         console.error("error deleting post:",error);
+      }
+     }
      useEffect(()=>{
       async function fetch(){
       const response:AxiosResponse<{info : ApiResponse[] }| null>
@@ -26,6 +50,7 @@ const Mypost = () =>{
       }
       fetch();
      },[]);
+     
      return (
         <>
         <Link to="/" style={{paddingLeft:"5px"}}>Home</Link>
@@ -37,7 +62,7 @@ const Mypost = () =>{
                <div className="card-body" key={dt.id}>
                  <h5 className="card-title">You</h5>
                  <p className="card-text">{dt.text}</p>
-                 <form><button>Delete</button></form>
+                 <form onSubmit={(e)=>handleDeletion(dt.id,e)}><button type='submit'>Delete</button></form>
                </div>
             </div>
             );
