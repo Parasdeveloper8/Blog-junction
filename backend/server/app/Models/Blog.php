@@ -25,4 +25,8 @@ class Blog extends Model
     public static function getPublicPost(){
         return Blog::all();
     }
+
+    public static function deletePost($id){
+        return Blog::destroy($id);
+    }
 }

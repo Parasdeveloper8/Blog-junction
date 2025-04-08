@@ -86,4 +86,21 @@ class Operation extends Controller
              ], 500);
         }
     }
+
+    //function to delete post
+    function deletePost($id){
+        try{
+            //calling Blog model's deletePost function to delete data
+           Blog::deletePost($id);
+          return response()->json([
+            "success" =>true,
+            "info" =>"Post deleted successfully"
+            ],200); 
+        }catch(\Exception $e){
+            return response()->json([
+                "success" => false,
+                "info" => $e->getMessage()
+             ], 500);
+        }
+    }
 }
