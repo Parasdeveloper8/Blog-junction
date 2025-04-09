@@ -11,10 +11,11 @@ class Blog extends Model
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = ['email','text']; //mass assignment
     
-    public static function addPost($email,$text){
+    public static function addPost($email,$text,$name){
         Blog::create([
             'email'=>$email,
-            'text'=>$text
+            'text'=>$text,
+            'name' => $name
        ]);
     }
 

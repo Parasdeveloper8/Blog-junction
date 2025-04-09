@@ -24,10 +24,11 @@ class Operation extends Controller
              //apply validations
             $req->validate([
             'email' => 'required|email',
-            'text'  => 'required'
+            'text'  => 'required',
+            'name'  => 'required'
         ]);
         //add values in Blog model's add Post function
-        Blog::addPost($req->email,$req->text);
+        Blog::addPost($req->email,$req->text,$req->name);
 
         return response()->json([
             "success" => true,
