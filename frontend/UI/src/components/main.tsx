@@ -8,6 +8,7 @@ const Main = () =>{
         text: string;
         created_at: string;
         updated_at: string;
+        name:string;
      }
 
      const [data,setData] = useState<null | ApiResponse []>(null);
@@ -37,7 +38,7 @@ const Main = () =>{
             return(
             <div className="card mx-auto mt-2" style={{width: "36rem"}}>
                <div className="card-body" key={dt.id}>
-                 <h5 className="card-title">{dt.email}</h5>
+                 <h5 className="card-title">{dt.name}</h5>
                  <p className="card-text">{dt.text}</p>
                </div>
             </div>

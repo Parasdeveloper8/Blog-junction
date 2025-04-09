@@ -13,6 +13,7 @@ const Login = () =>{
         info:string;
         token:string;
         email:string;
+        name:string;
       }
 
       const navigate = useNavigate();
@@ -42,6 +43,7 @@ const Login = () =>{
         if(response.data.success){
            localStorage.setItem('token', response.data.token); //set token
            localStorage.setItem('email', response.data.email); //set email
+           localStorage.setItem('name', response.data.name);   //set name
            navigate('/'); // Redirect to the homepage
         }
      }catch(error){

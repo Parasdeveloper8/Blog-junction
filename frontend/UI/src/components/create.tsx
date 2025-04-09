@@ -11,7 +11,7 @@ const CreatePage = () =>{
 
     const token:string | null= localStorage.getItem('token');
     const email:string | null= localStorage.getItem('email');
-
+    const name:string | null = localStorage.getItem('name');
     const navigate = useNavigate();
 
     const [formData,setFormData] = useState({
@@ -57,7 +57,8 @@ const CreatePage = () =>{
            await axios.get('/sanctum/csrf-cookie'); // important
            const response: AxiosResponse<ApiResponse> = await axios.post("http://localhost:8000/api/save-blog",{
                 "email":email,
-                "text":formData.text
+                "text":formData.text,
+                "name":name
            },{
             headers: {
               Authorization: `Bearer ${token}`
