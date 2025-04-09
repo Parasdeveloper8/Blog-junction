@@ -27,6 +27,7 @@ class Operation extends Controller
             'text'  => 'required',
             'name'  => 'required'
         ]);
+        Log::info($req->name); //debugging line
         //add values in Blog model's add Post function
         Blog::addPost($req->email,$req->text,$req->name);
 
