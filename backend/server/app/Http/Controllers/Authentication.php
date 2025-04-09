@@ -59,7 +59,8 @@ class Authentication extends Controller
                "success" => true,
                "info"    => "Login successful",
                "token"   => $token,
-               "email"   => $email
+               "email"   => $email,
+               "name"    => $name
             ],200);
            
          }
