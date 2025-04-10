@@ -35,6 +35,7 @@ const Mypost = () =>{
       }
      }
      useEffect(()=>{
+      document.title = 'Your Posts';
       async function fetch(){
       const response:AxiosResponse<{info : ApiResponse[] }| null>
        = 

@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios, { AxiosResponse } from 'axios';
 import { useNavigate} from 'react-router-dom';
 import Loader from "../loader.tsx";
 import Blank from "../blankComponent.tsx";
 
 const Login = () =>{
+   useEffect(()=>{
+          document.title = "Login";
+       });
      const [isSubmitting,setSubmitting] = useState(false);//Check if form is being submitted
      const [err,setErr] = useState("");  //if any error after form submission comes
 
