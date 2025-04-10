@@ -25,11 +25,12 @@ class Operation extends Controller
             $req->validate([
             'email' => 'required|email',
             'text'  => 'required',
-            'name'  => 'required'
+            'name'  => 'required',
+            'title' => 'required'
         ]);
         Log::info($req->name); //debugging line
         //add values in Blog model's add Post function
-        Blog::addPost($req->email,$req->text,$req->name);
+        Blog::addPost($req->email,$req->text,$req->name,$req->title);
 
         return response()->json([
             "success" => true,

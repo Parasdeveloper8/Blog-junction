@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Log;
 class Blog extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $fillable = ['email','text','name']; //mass assignment
+    protected $fillable = ['email','text','name','title']; //mass assignment
     
-    public static function addPost($email,$text,$name){
+    public static function addPost($email,$text,$name,$title){
         Log::info("Name " . $name); //debugging line
+        Log::info("Title" . $title); //debugging line
         Blog::create([
             'email'=>$email,
             'text'=>$text,
-            'name' => $name
+            'name' => $name,
+            'title' => $title
        ]);
     }
 
