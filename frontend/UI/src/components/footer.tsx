@@ -1,7 +1,7 @@
 const Footer = () =>{
     return (
         <>
-        <p>@Parasdeveloper8</p>
+        <p className="text-center">@Parasdeveloper8</p>
         </>
     )
 }

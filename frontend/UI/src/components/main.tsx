@@ -1,5 +1,7 @@
 import axios, { AxiosResponse} from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+import "../assets/CSS/main.css"
+
 import Loader from './loader';
 const Main = () =>{
     interface ApiResponse {
@@ -9,6 +11,7 @@ const Main = () =>{
         created_at: string;
         updated_at: string;
         name:string;
+        title:string;
      }
 
      const [data,setData] = useState<null | ApiResponse []>(null);
@@ -36,9 +39,15 @@ const Main = () =>{
         {data ? 
          data.map((dt) => {
             return(
-            <div className="card mx-auto mt-2" style={{width: "36rem"}}>
+            <div className="card mx-auto mt-2 divCard" >
                <div className="card-body" key={dt.id}>
-                 <h5 className="card-title">{dt.name}</h5>
+                  <div style={{display:"flex",borderBottom:"1px solid black",justifyContent:"space-between"}}>
+                 <p style={{fontSize:"25px"}}>{dt.name}</p>
+                 <p className='card-text' style={{paddingLeft:"1rem"}}>{dt.created_at.split('T')[0]}</p>
+                 </div>
+                 <p className='text-center' 
+                 style={{fontSize:"20px",fontStyle:"italic",textDecoration:"underline black"}}
+                 >{dt.title}</p>
                  <p className="card-text">{dt.text}</p>
                </div>
             </div>

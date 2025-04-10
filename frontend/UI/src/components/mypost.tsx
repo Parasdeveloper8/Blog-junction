@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Mypost = () =>{
-   
+   const [isHovered,setHovered] = useState(false);
    interface ApiResponse {
       id: number;
       text: string;
@@ -63,7 +63,13 @@ const Mypost = () =>{
                <div className="card-body" key={dt.id}>
                  <h5 className="card-title">You</h5>
                  <p className="card-text">{dt.text}</p>
-                 <form onSubmit={(e)=>handleDeletion(dt.id,e)}><button type='submit'>Delete</button></form>
+                 <form onSubmit={(e)=>handleDeletion(dt.id,e)}>
+                  <button type='submit' 
+                  style={{
+                     border:"none",backgroundColor:"inherit",color:"blue",
+                  textDecoration:isHovered ? "underline wavy blue" : "underline white"}}
+                  onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>Delete</button>
+                  </form>
                </div>
             </div>
             );
