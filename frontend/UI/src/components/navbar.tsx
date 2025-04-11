@@ -54,7 +54,9 @@ const NavBar = () => {
         {token? (
           <form className="d-flex" style={{marginRight:"5px",marginBottom:"5px"}} onSubmit={handleLogout}>
           <button className="btn btn-outline-success" type="submit">Logout</button>
-          </form>) :  (
+          </form>
+          
+          ) :  (
           <>
           <li className="nav-item" >
           <Link className="nav-link" to="/login">Login</Link>

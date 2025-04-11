@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import axios, { AxiosResponse } from 'axios';
-import { useNavigate} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import Loader from "../loader.tsx";
 import Blank from "../blankComponent.tsx";
 
@@ -73,6 +73,7 @@ const Login = () =>{
 
     <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? 'Logging' : 'Login' }</button>
     </form>
+    <Link to="/reset-pass-send-link-page">Reset Password</Link>
     </div>
     {err ? <p className="fs-4"><b style={{color:"red"}}>error : </b>{err}</p> : ""}
         </>
