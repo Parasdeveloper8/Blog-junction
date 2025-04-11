@@ -98,4 +98,55 @@ class Authentication extends Controller
       ], 500);
    }
    }
+
+   //send reset link
+   function sendLink($email){
+      try{
+         //check if email exists
+         $exists = User::where('email', $email)->exists();
+         if($exists == false){
+            return response()->json([
+               "success" => false,
+               "info" =>  $email . " doesn't exist"
+            ], 500);
+         }
+        //send mail by calling User model's sendLink function
+         User::sendLink($email);
+         return response()->json([
+            "success" => true,
+            "info" => "Mail send successfully to " . $email
+         ], 200);
+      }catch(\Exception $e){
+         return response()->json([
+            "success" => false,
+            "info" => $e->getMessage()
+         ], 500);
+      }
+   }
+    //reset password
+   function resetPass($email,$password){
+      try{
+         //check if email exists
+         $exists = User::where('email', $email)->exists();
+         if($exists == false){
+            return response()->json([
+               "success" => false,
+               "info" =>  $email . " doesn't exist"
+            ], 500);
+         }
+
+      //calling User model's resetPass function to change password
+      User::resetPass($email,$password);
+      return response()->json([
+         "success" => true,
+         "info" => "Password changed successfully"
+      ], 200);
+      
+      }catch(\Exception $e){
+         return response()->json([
+            "success" => false,
+            "info" => $e->getMessage()
+         ], 500);
+      }
+   }
 }

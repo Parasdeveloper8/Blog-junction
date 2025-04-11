@@ -9,6 +9,8 @@ Route::post('/register', [Authentication::class,'registerController']);
 Route::post('/login',[Authentication::class,'loginController']);
 
 Route::get('/posts',[Operation::class,'getPosts']);
+Route::get('/sendResetLink/{email}',[Authentication::class,'sendLink']);
+Route::patch('/resetPass/{email}/{password}',[Authentication::class,'resetPass']);
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::post('/logout',[Authentication::class,'logoutController']);
