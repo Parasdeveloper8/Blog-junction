@@ -1,6 +1,7 @@
 import axios, { AxiosResponse} from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loader from './loader';
 
 const Mypost = () =>{
    const [isHovered,setHovered] = useState(false);
@@ -73,7 +74,7 @@ const Mypost = () =>{
                </div>
             </div>
             );
-         }) : <p>Nothing to show</p>
+         }) : <Loader/>
       }
         </>
      )
